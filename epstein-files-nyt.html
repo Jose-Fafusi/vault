@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYT Epstein Files: How The Times Is Digging In</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #f7f4ef;
+    --newsprint: #ece8e0;
+    --accent: #a01f0e;
+    --accent-light: #c93320;
+    --rule: #b0a090;
+    --muted: #3a3a3a;
+    --highlight: #eee8d5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Merriweather', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.85;
+    min-height: 100vh;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 1.2rem 1rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--accent);
+  }
+
+  .masthead-label {
+    font-family: 'Merriweather', serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rule);
+    margin-bottom: 0.2rem;
+  }
+
+  .masthead-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    padding: 2.5rem 1.25rem 2rem;
+    border-bottom: 4px double var(--rule);
+  }
+
+  .hero-kicker {
+    font-family: 'Merriweather', serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero h1 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.9rem, 7vw, 3rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: #e8c98a;
+  }
+
+  .hero-deck {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #d0c8b8;
+    font-style: italic;
+    max-width: 600px;
+    border-left: 2px solid var(--accent);
+    padding-left: 0.85rem;
+  }
+
+  .byline-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid #3a3020;
+  }
+
+  .byline-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .byline-text {
+    font-size: 0.75rem;
+    color: #b8b0a0;
+    letter-spacing: 0.08em;
+    font-family: 'Merriweather', serif;
+  }
+
+  /* CONTENT WRAPPER */
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.25rem 3rem;
+  }
+
+  /* SECTION STYLING */
+  .section {
+    padding: 2rem 0 1.5rem;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.2s; }
+  .section:nth-child(3) { animation-delay: 0.3s; }
+  .section:nth-child(4) { animation-delay: 0.4s; }
+  .section:nth-child(5) { animation-delay: 0.5s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-number {
+    font-family: 'Merriweather', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .section h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(1.4rem, 5vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .section p {
+    margin-bottom: 1rem;
+    color: #0d0d0d;
+  }
+
+  .section p:last-child { margin-bottom: 0; }
+
+  /* PULLQUOTE */
+  .pullquote {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+    border-left: 4px solid var(--accent);
+    background: var(--highlight);
+    position: relative;
+  }
+
+  .pullquote::before {
+    content: '\201C';
+    font-family: 'Lora', serif;
+    font-size: 4rem;
+    color: var(--accent);
+    opacity: 0.3;
+    position: absolute;
+    top: -0.5rem;
+    left: 0.75rem;
+    line-height: 1;
+  }
+
+  .pullquote p {
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  .pullquote cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-style: normal;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Merriweather', serif;
+  }
+
+  /* STAT CARDS */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+  }
+
+  .stat-card {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1rem 0.85rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+    font-weight: 900;
+    color: #e8c98a;
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: #c0b8a8;
+    margin-top: 0.3rem;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    font-family: 'Merriweather', serif;
+  }
+
+  /* TABLE */
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  .comparison-table th {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.65rem 0.75rem;
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .comparison-table th:first-child {
+    border-right: 1px solid #3a3020;
+  }
+
+  .comparison-table td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+
+  .comparison-table td:first-child {
+    background: #eee8d8;
+    font-weight: 600;
+    border-right: 1px solid var(--rule);
+    color: var(--accent);
+    font-size: 0.85rem;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: 2px solid var(--ink);
+  }
+
+  /* TECHNIQUE CARDS */
+  .technique-list {
+    list-style: none;
+    margin: 1.25rem 0;
+  }
+
+  .technique-list li {
+    display: flex;
+    gap: 0.85rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+  }
+
+  .technique-list li:last-child { border-bottom: none; }
+
+  .tech-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: white;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+  }
+
+  .tech-content strong {
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+    color: var(--ink);
+  }
+
+  .tech-content span {
+    font-size: 0.85rem;
+    color: #222222;
+    line-height: 1.45;
+  }
+
+  /* CASE STUDY BOX */
+  .case-study {
+    background: var(--newsprint);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--ink);
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .case-study-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-family: 'Merriweather', serif;
+  }
+
+  .case-study h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .case-study p {
+    font-size: 0.88rem;
+    color: #111111;
+    margin-bottom: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: #a09888;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    font-family: 'Merriweather', serif;
+  }
+
+  footer strong {
+    color: var(--cream);
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  /* RULE DIVIDER */
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.5rem 0;
+  }
+  .rule::before, .rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .rule span {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-label">Analysis & Summary</div>
+  <div class="masthead-title">NYT Epstein Files Coverage</div>
+</header>
+
+<section class="hero">
+  <span class="hero-kicker">Times Insider · February 2026</span>
+  <h1>Digging Into<br><em>Three Million</em><br>Pages</h1>
+  <p class="hero-deck">How The New York Times is combining artificial intelligence with traditional investigative journalism to make sense of the largest document release in recent Times history.</p>
+  <div class="byline-bar">
+    <div class="byline-dot"></div>
+    <span class="byline-text">Source: NYT Times Insider · Summarized Analysis</span>
+  </div>
+</section>
+
+<main class="content">
+
+  <!-- SECTION 1: OVERVIEW -->
+  <article class="section">
+    <div class="section-number">Part I</div>
+    <h2>The Scale of the Task</h2>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="stat-number">3M</span>
+        <span class="stat-label">Pages Released</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">180K</span>
+        <span class="stat-label">Images</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">2,000</span>
+        <span class="stat-label">Videos</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">2–3%</span>
+        <span class="stat-label">Reviewed So Far</span>
+      </div>
+    </div>
+
+    <p>The Justice Department released the Epstein files on January 30, 2026 — a document dump so vast that, stacked, the pages would reach the top of the Empire State Building. About two dozen journalists are working through the material, yet have seen only 2–3% of it. At that rate, it would take years to review and verify everything.</p>
+
+    <p>Reporters from the Investigations, National, Metro, and Business desks were assembled alongside engineers and AI journalists, creating an unusually cross-functional team. They started with a simple method: search terms. Trump. Clinton. Gates. Duke of York. Names, places, and events connected to Epstein.</p>
+
+    <div class="pullquote">
+      <p>It was like we suddenly had subpoena power. Witness statements, emails, bank records — all of it.</p>
+      <cite>— Kirsten Danis, Investigations Editor</cite>
+    </div>
+  </article>
+
+  <!-- SECTION 2: AI + MANUAL HYBRID -->
+  <article class="section">
+    <div class="section-number">Part II</div>
+    <h2>AI Meets Traditional Reporting: The Hybrid Approach</h2>
+
+    <p>The NYT's approach was never to let AI drive the reporting — rather, to use it as an amplifier for human judgment. Here's how each layer worked:</p>
+
+    <ul class="technique-list">
+      <li>
+        <div class="tech-icon">01</div>
+        <div class="tech-content">
+          <strong>Document Ingestion & Indexing</strong>
+          <span>Andrew Chavez's Interactive News team spent ~10 hours uploading and indexing all 3 million pages into a proprietary search tool. Until ready, reporters used the DOJ's own clunky interface.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tech-icon">02</div>
+        <div class="tech-content">
+          <strong>Semantic Search (Beyond Keywords)</strong>
+          <span>Traditional search only finds exact matches. Semantic search finds conceptually related content — critical for navigating typos, OCR errors, and inconsistent language throughout the files.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tech-icon">03</div>
+        <div class="tech-content">
+          <strong>AI Tagging & Categorization</strong>
+          <span>An AI tool automatically bucketed documents by type (email, legal record, photo, text message) and added newsworthiness labels, giving reporters a fast triage layer.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tech-icon">04</div>
+        <div class="tech-content">
+          <strong>Visual Photo Search</strong>
+          <span>Reporters could search images by visual content — not just metadata — allowing them to locate photos and scan imagery at a scale impossible by hand.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tech-icon">05</div>
+        <div class="tech-content">
+          <strong>Duplicate Detection</strong>
+          <span>An AI tool flagged repeated documents across the 3 million pages, preventing reporters from counting the same information multiple times or chasing false leads.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tech-icon">06</div>
+        <div class="tech-content">
+          <strong>Crowdsourced Spreadsheet Verification</strong>
+          <span>Dylan Freedman built a scraper that pulled DOJ search results into organized spreadsheets by key figure. Reporters then collaboratively verified each entry — classic newsroom teamwork, supercharged.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tech-icon">07</div>
+        <div class="tech-content">
+          <strong>Video & Audio Transcription</strong>
+          <span>AI parsed the 2,000+ videos and audio files into searchable transcripts, making multimedia part of the investigative database — not a separate, harder-to-access silo.</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="pullquote">
+      <p>AI is like a liquid — information can be molded into different formats and searched in rich, expressive ways. But it can never replace expert news judgment.</p>
+      <cite>— Dylan Freedman, AI Projects Editor</cite>
+    </div>
+  </article>
+
+  <!-- SECTION 3: AI STRENGTHS & LIMITS -->
+  <article class="section">
+    <div class="section-number">Part III</div>
+    <h2>What AI Can and Cannot Do</h2>
+
+    <p>The Times team was remarkably candid about where AI helped and where it fell short — a more honest accounting than most newsrooms provide.</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>AI Was Good At</th>
+          <th>AI Was Bad At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Extracting text from images & audio</td>
+          <td>News judgment</td>
+        </tr>
+        <tr>
+          <td>Captioning photos automatically</td>
+          <td>Determining importance or newsworthiness</td>
+        </tr>
+        <tr>
+          <td>Assigning structure to raw emails</td>
+          <td>Generating original ideas</td>
+        </tr>
+        <tr>
+          <td>Processing messy, unstructured data</td>
+          <td>Avoiding sycophancy & confirmation bias</td>
+        </tr>
+        <tr>
+          <td>Building tools quickly (days vs. weeks)</td>
+          <td>Reliable redaction analysis</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Chavez stressed that they gave AI only "discrete, narrow tasks" it could handle reliably — like identifying whether a page contained an image — rather than open-ended analysis. The AI surfaces signals; reporters follow up with human judgment and sourcing built over years.</p>
+  </article>
+
+  <!-- SECTION 4: CASE STUDIES -->
+  <article class="section">
+    <div class="section-number">Part IV</div>
+    <h2>AI Verification in Action: Two Case Studies</h2>
+
+    <div class="case-study">
+      <div class="case-study-label">Case Study 01</div>
+      <h3>The "=9yo" OCR Error</h3>
+      <p>A viral social media claim centered on a document showing "=9yo" — implying a 9-year-old. NYT's tools cross-referenced multiple versions of the same document and confirmed it was a software ingestion error. Another version of the document clearly read "19yo." AI-assisted cross-referencing caught what human eyes might have missed at scale — and what disinformation spreaders exploited.</p>
+    </div>
+
+    <div class="case-study">
+      <div class="case-study-label">Case Study 02</div>
+      <h3>The Fake "Unredacted AI" Videos</h3>
+      <p>Viral videos claimed to show AI "undoing" government redactions in the Epstein files. The Times built a tool that scanned all 3 million pages for potentially reversible redactions — and found none. What the videos actually showed was AI hallucinating plausible text beneath black boxes, not revealing real hidden information. The tool provided definitive, documented proof to counter the disinformation.</p>
+    </div>
+
+    <div class="rule"><span>Editorial Standards</span></div>
+
+    <p>A third judgment call — around unverified Trump accusations — showed how editorial process and AI tools work together. The team found a document summarizing over a dozen unverified tips about Trump and Epstein, but chose to describe their existence in general terms without publishing unverifiable details. The article's published language: <em>"The emails did not include any corroborating evidence and The New York Times is not describing the details of the unverified claims."</em></p>
+  </article>
+
+  <!-- SECTION 5: KEY FINDINGS -->
+  <article class="section">
+    <div class="section-number">Part V</div>
+    <h2>What the Files Have — and Haven't — Revealed</h2>
+
+    <p>After reviewing roughly 2–3% of the material, the picture is clearer in some areas and murky in others:</p>
+
+    <ul class="technique-list">
+      <li>
+        <div class="tech-icon" style="background:#2a6e3a;">✓</div>
+        <div class="tech-content">
+          <strong>Rich portrait of Epstein's orbit</strong>
+          <span>The files give an inside look at how Epstein operated — trading gifts and favors, enticing elites with dinners and island visits, and positioning himself as someone who "knew things" about powerful people.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tech-icon" style="background:#2a6e3a;">✓</div>
+        <div class="tech-content">
+          <strong>Extensive network documentation</strong>
+          <span>38,000+ references to Trump — though many are news clippings and previously released congressional documents. No major new revelations about his relationship with Epstein emerged.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tech-icon" style="background:#8a3a2a;">✗</div>
+        <div class="tech-content">
+          <strong>No proof of wide pedophilia ring</strong>
+          <span>Despite thorough searching, no hard evidence of a broad ring has emerged in what's been reviewed. Possible co-conspirators named by investigators were not new names.</span>
+        </div>
+      </li>
+      <li>
+        <div class="tech-icon" style="background:#8a3a2a;">✗</div>
+        <div class="tech-content">
+          <strong>No clear blackmail proof</strong>
+          <span>The theory that Epstein collected secrets for leverage remains unproven. The files show he "seemed to see value" in claiming to know things — but hard evidence has not surfaced yet.</span>
+        </div>
+      </li>
+    </ul>
+
+    <div class="pullquote">
+      <p>It is hard to believe that after all that has been said, there is still so much to learn about Epstein and his network.</p>
+      <cite>— Steve Eder, Investigative Reporter</cite>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <strong>NYT Epstein Files — Analysis Summary</strong>
+  Source: New York Times Times Insider, February 12, 2026<br>
+  Interview by Patrick Healy with Steve Eder, Andrew Chavez, Kirsten Danis & Dylan Freedman
+</footer>
+
+</body>
+</html>
